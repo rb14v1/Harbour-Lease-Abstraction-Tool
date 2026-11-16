@@ -1,0 +1,12 @@
+django>=5.0,<5.1
+djangorestframework>=3.14
+djangorestframework-simplejwt>=5.3
+psycopg2-binary>=2.9
+python-decouple>=3.8
+django-cors-headers>=4.3
+azure-storage-blob>=12.19
+azure-ai-documentintelligence>=1.0.0
+azure-search-documents>=11.4
+openai>=1.30
+pytest>=8.0
+pytest-django>=4.8
