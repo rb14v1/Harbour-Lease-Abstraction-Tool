@@ -10,3 +10,4 @@ azure-search-documents>=11.4
 openai>=1.30
 pytest>=8.0
 pytest-django>=4.8
+gunicorn
