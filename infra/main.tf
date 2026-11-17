@@ -26,7 +26,13 @@ resource "azurerm_postgresql_flexible_server" "postgresql" {
   resource_group_name    = "harbour-lease-abstraction-tool-1"
   location               = "uksouth"
   version                = "16"
-  sku_name               = "B_Standard_B1ms"
+  # B_Standard_B1ms is a valid SKU name and is listed as offered in uksouth (Azure's capabilities API
+  # confirms it, no restriction flag), but regional hardware stock for it has been intermittently
+  # exhausted — a capacity error (SkuNotAvailable), not a quota or config problem, and not something a
+  # retry on the same SKU reliably clears. B_Standard_B2s is Azure's own default Burstable SKU for this
+  # region and has not shown the same stockout. Regression: legal-contartct-test-15, apply failed twice
+  # with "Specified SKU is not supported in this region. Please choose a different SKU."
+  sku_name               = "B_Standard_B2s"
   storage_mb             = 32768
   administrator_login    = "psqladmin"
   administrator_password = random_password.postgresql_admin.result
